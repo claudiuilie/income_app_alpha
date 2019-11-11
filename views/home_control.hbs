@@ -45,7 +45,7 @@
                             <div class="card-header p-0">
                                 <span><i>Daily temperature</i>
                                 </span></br>
-                                <input type="text" class="border-0 bg-primary rounded histCalendar mb-2 text-center text-light " id="dailyTempHist" value="{{tempHistory.date}}"
+                                <input type="text" class="border-0 bg-primary rounded histCalendar mb-2 text-center text-light " id="dailyTempHist" readonly="true"  value="{{tempHistory.date}}"
                                     onclick="calendarHandler(this)" /></br>
                                 <span class="mb-2 p-1 rounded"
                                     style="border:1px solid red ;background-color:rgba(255,226,0,0.19);color:red;display: none;"></span>
@@ -68,7 +68,7 @@
                             <div class="card text-center text-primary">
                                 <div class="card-header p-0">
                                     <span><i>Daily humidity</i></span></br>
-                                    <input type="text" class="border-0 bg-primary rounded histCalendar mb-2 text-center text-light " id="dailyHumHist" value="{{tempHistory.date}}" onclick="calendarHandler(this)"/></br>
+                                    <input type="text" class="border-0 bg-primary rounded histCalendar mb-2 text-center text-light " id="dailyHumHist" readonly="true"  value="{{tempHistory.date}}" onclick="calendarHandler(this)"/></br>
                                     <span class="p-1 rounded" style="border:1px solid red ;background-color:rgba(255,226,0,0.19);color:red;display: none;"></span>
                                 </div>
                                 <div class="card-body">
