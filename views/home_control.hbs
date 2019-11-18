@@ -133,7 +133,8 @@
                 singleDatePicker: true,
                 showDropdowns: true,
                 minYear: 2019,
-                maxYear: parseInt(moment().format('YYYY'), 10)
+                maxYear: parseInt(moment().format('YYYY'), 10),
+                opens: "center"
             }, function (start, end, label) {
                 
 
@@ -172,7 +173,6 @@
                 })
             });
         });
-{{!-- DE CREAT MEDTODA DE POST CU PRELUARE OBIECT DIN DB SI UPDATE CHART --}}
 </script>
 <script src="/js/chart.js"></script>
 <script>
@@ -276,34 +276,5 @@
             }
         }
     });
-
-    // options: {
-    //     maintainAspectRatio: false,
-    //             scales: {
-    //         yAxes: [{
-    //             offset: true,
-    //             ticks: {
-    //                 beginAtZero: true,
-    //                 minRotation: 0,
-    //                 maxRotation: 50,
-    //                 mirror: false,
-    //                 padding: 0,
-    //                 reverse: false,
-    //                 display: true,
-    //                 autoSkip: false,
-    //                 autoSkipPadding: 0,
-    //                 labelOffset: 0
-    //             },
-    //             gridLines: {
-    //                 display: false
-    //             }
-    //         }],
-    //                 xAxes: [{
-    //             gridLines: {
-    //                 display: false
-    //             }
-    //         }]
-    //     }
-    // }
 </script>
 
