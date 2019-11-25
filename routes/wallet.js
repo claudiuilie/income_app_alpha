@@ -73,4 +73,18 @@ router.post('/', (req, res, next) => {
     }
 });
 
+router.post('/delete', (req, res, next) => {
+
+    if (!req.session.loggedin) res.redirect('/auth');
+
+    else {
+        mysql.delete('income',req.body,(err,results) => {
+            if (err)
+                next(err);
+
+            res.send(results);
+        })
+    }
+});
+
 module.exports = router;

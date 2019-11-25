@@ -44,6 +44,21 @@ class mysqlController {
             return results(error,res);
         })
     }
+
+    delete(table,request,results) {
+        let querry = `DELETE FROM ${table} WHERE `;
+
+        for (let k in request) {
+            querry += `${k} = ?`;
+            if (Object.keys(request).length > 1 && k !== Object.keys(request).pop()) {
+                querry += ' AND '
+            }
+        }
+
+        this.connection.query(querry,Object.values(request),(error,res)=> {
+            return results(error,res);
+        })
+    }
 }
 
 module.exports = mysqlController;
