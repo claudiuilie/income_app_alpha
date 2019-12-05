@@ -28,7 +28,7 @@ router.post('/', (req, res, next) => {
                 if (results.length == 0) {
                     postData()
                 } else {
-                    res.render('wallet_create', {message: `Exista deja date pentru ${month.month_name} ${month.year}` , infoModal: 'show'});
+                    res.render('wallet_create', {message: `Duplicate entry: ${month.month_name} ${month.year}` , infoModal: 'show'});
                 }
             }
         });
