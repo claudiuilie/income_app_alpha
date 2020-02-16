@@ -8,7 +8,7 @@ class WebTorrent {
 
     }
     
-    downloadTorrent = () => {
+    downloadTorrent(){
 
        function prettyBytes(num){
             var exponent, unit, neg = num < 0, units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
