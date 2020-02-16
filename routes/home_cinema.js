@@ -11,17 +11,18 @@ const mysql = new mysqlController(config.mysql);
 
 router.get('/', (req, res, next) => {
 
-    // if (!req.session.loggedin) res.redirect('/auth');
+    if (!req.session.loggedin) res.redirect('/auth');
 
-    // else {}
-    // res.render('vacations',{});
-
-    let torrent = 'magnet:?xt=urn:btih:8df201bd3630cf4c8d89764fba95760db50cfae6&dn=Manifest.S02E06.1080p.WEB.H264-AMCON%5BTGx%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.ccc.de%3A80'
+    else {
+        let torrent = 'magnet:?xt=urn:btih:8df201bd3630cf4c8d89764fba95760db50cfae6&dn=Manifest.S02E06.1080p.WEB.H264-AMCON%5BTGx%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.ccc.de%3A80'
     // console.log(torrent)
     let tracker = new WebTorrent(torrent)
     // tracker.downloadTorrent()
 
     res.render('home_cinema', {});
+
+    }
+    // res.render('vacations',{});
 
 });
 
