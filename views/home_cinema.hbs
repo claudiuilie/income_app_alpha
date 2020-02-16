@@ -1,0 +1,26 @@
+<header class="masthead text-white container  align-items-center flex-column" style="padding-top: 7em;padding-bottom: 2em;">
+            <!--    form data -->
+            <div class="card " style="margin: 1%;">
+                <div class="card-header text-info border-0">
+                    <a href ="/home"><button class="btn btn-info "><i class="far fa-arrow-alt-circle-left"></i></button></a>
+                </div>
+                <div class="card-body text-center ">
+                    <div id ="formData" class="was-validated">
+                        <div class="form-group">
+                            <label class="text-info" class="text-info" for="searchInput">Search</label>
+                            <input type="text" id="searchInput" class="form-control" name="search" required>
+                        </div>
+                        <button type="button" onclick="search(document.getElementById('searchInput'))" class="btn btn-primary btn-lg btn-block" >Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                    <section class="page-section portfolio" id="portfolio">
+                        <div class="container">
+                            <div class="row" id="searchResults">
+                            </div>
+                        </div>
+                    </section>
+            </div>
+</header>
+

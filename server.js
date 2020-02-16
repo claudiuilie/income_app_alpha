@@ -40,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'assets')));
 
 const authRouter = require('./routes/auth');
 const homeRouter = require('./routes/home');
+const homeCinemaRouter = require('./routes/home_cinema')
 const profileRouter = require('./routes/profile');
 const homeControltRouter = require('./routes/home_control');
 const walletRouter = require('./routes/wallet');
@@ -50,6 +51,7 @@ const logoutRouter = require('./routes/logout');
 
 app.use('/auth', authRouter);
 app.use('/home',homeRouter);
+app.use('/cinema', homeCinemaRouter);
 app.use('/profile',profileRouter);
 app.use('/control',homeControltRouter);
 app.use('/wallet', walletRouter);
