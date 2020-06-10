@@ -27,7 +27,7 @@ router.get('/',(req,res, next) => {
                 if(error) {
                     return next(error);
                 }
-
+		console.log(results);
                 for (let k in results) {
                     if(results[k].type == "sensors"){
                         sensorsData = results[k];
@@ -129,9 +129,9 @@ router.post('/', (req,res,next) => {
         } else {
 
             if (req.body.status == 'true' && !req.body.switch)
-                url = `${config.arduino.host}/digital/${req.body.relayId}/1`;
-            else 
                 url = `${config.arduino.host}/digital/${req.body.relayId}/0`;
+            else 
+                url = `${config.arduino.host}/digital/${req.body.relayId}/1`;
 
             request(url,  (error, response) => {
                 if(error) {

@@ -20,7 +20,7 @@
     "handlebars": "^4.7.3",
     "hoek": ">=4.2.1",
     "html-dom-parser": "^0.2.3",
-    "jsdom": "^16.1.0",
+    "jsdom": "^16.2.2",
     "mysql": "^2.17.1",
     "mysql-to-rest": "^1.0.8",
     "node-cron": "^2.0.3",

@@ -28,7 +28,7 @@
                                     <div class="container ">
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" class="custom-control-input " id="{{this.id}}"
-                                                onclick="switchHandler(this)" {{#if this.status}}checked{{/if}} {{#if this.webhook}}
+                                                onclick="switchHandler(this)" {{#unless this.status}}checked{{/unless}} {{#if this.webhook}}
                                                 value="{{this.webhook}}" {{else}} value="" {{/if}}>
                                             <label class="custom-control-label" for="{{this.id}}"><span>{{this.name}}</span></label>
                                         </div>
