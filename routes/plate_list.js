@@ -14,8 +14,8 @@ router.get('/', (req, res, next) => {
 
         let mysql = new mysqlController(config.mysql);
 
-        mysql.select('my_plate', { 1: 1 }, (error, results) => {
-            console.log(results);
+        mysql.select('my_plate_articles', { 1: 1 }, (error, results) => {
+
             let items = {
                 proteine: [],
                 legume: [],
@@ -40,7 +40,7 @@ router.get('/', (req, res, next) => {
                 }
             }
 
-            res.render('vacations', { item: items });
+            res.render('plate_list', { item: items });
         });
     }
 });

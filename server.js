@@ -46,7 +46,8 @@ const homeControltRouter = require('./routes/home_control');
 const walletRouter = require('./routes/wallet');
 const createWalletRouter = require('./routes/wallet_create');
 const editWalletRouter = require('./routes/wallet_edit');
-const vacationsRouter = require('./routes/vacations');
+const plateList = require('./routes/plate_list');
+const plateItem = require('./routes/plate_item');
 const logoutRouter = require('./routes/logout');
 
 app.use('/auth', authRouter);
@@ -57,7 +58,8 @@ app.use('/control',homeControltRouter);
 app.use('/wallet', walletRouter);
 app.use('/wallet/create', createWalletRouter);
 app.use('/wallet/edit', editWalletRouter);
-app.use('/vacations', vacationsRouter);
+app.use('/plate/list', plateList);
+app.use('/plate/item', plateItem);
 app.use('/logout', logoutRouter);
 
 app.get('*', (req, res) => {

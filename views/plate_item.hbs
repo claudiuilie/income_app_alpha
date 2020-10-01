@@ -1,0 +1,59 @@
+<header class="masthead bg-white text-white text-center container" style="padding-top: 7em;padding-bottom: 2em;">
+    
+    <div class="card card text-center mb-3 text-primary shadow p-3 mb-5 bg-white rounded">
+        <a href="/plate/list"><button class="btn btn-info float-left"><i class="far fa-arrow-alt-circle-left"></i></button></a>
+        <img class="card-img-top" src="{{article.icon}}" alt="Card image cap" style="filter: alpha(opacity=50);">
+        <div class="card-body ">
+            <h5 class="card-title">{{article.name}}</h5>
+            <small class="card-text text-muted font-italic text-break">{{article.description}}</small>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item font-weight-bold">
+                <span class="badge badge-info p-1">
+                    <span style="font-size:12px;" class="badge badge-secondary p-1 mb-1">Protein</span></br>
+                    <span class="badge badge-secondary p-1">{{article.protein}} gr</span>
+                </span>
+                <span class="badge badge-info p-1">
+                    <span style="font-size:12px;" class="badge badge-secondary p-1 mb-1">Carbs</span></br>
+                    <span class="badge badge-secondary p-1">{{article.carbs}} gr</span>
+                </span>
+                <span class="badge badge-info p-1">
+                    <span style="font-size:12px;" class="badge badge-secondary p-1 mb-1">Fat</span></br>
+                    <span class="badge badge-secondary p-1">{{article.fat}} gr</span>
+                </span>
+                <span class="badge badge-info p-1">
+                    <span style="font-size:12px;" class="badge badge-secondary p-1 mb-1">Fiber</span></br>
+                    <span class="badge badge-secondary p-1">{{article.fiber}} gr</span>
+                </span>
+            </li>
+            <li class="list-group-item">
+                Nutrient Score
+                <div class="progress">
+                    <div id="item_{{article.id}}" class="progress-bar" role="progressbar" style="width: {{article.nutrient_score}}%" aria-valuenow="{{article.nutrient_score}}" aria-valuemin="0" aria-valuemax="100">
+                         {{article.nutrient_score}}
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+        
+    <script>
+        let articleId = {{article.id}};
+        let score = {{article.nutrient_score}};
+        console.log(score)
+        let article = document.getElementById("item_"+articleId);
+
+            switch (true) {
+                case score < 70 && score > 40:
+                    article.classList.add("bg-warning");
+                    break;
+                case score > 70 :
+                    article.classList.add("bg-success");
+                    break;
+                case score < 40:
+                    article.classList.add("bg-danger");
+                    break;
+            }
+
+    </script>
+</header>
