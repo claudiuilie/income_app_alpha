@@ -27,6 +27,10 @@ class DateAndTime {
         return `${this.getYear()}-${this.getMonth()}-${this.getDay()}`
     }
 
+    getLocalDateString() {
+        return this.date.toLocaleDateString();
+    }
+
     revertCurrentDate() {
         return `${this.getMonth()}/${this.getDay()}/${this.getYear()}`
     }

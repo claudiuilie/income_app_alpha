@@ -15,7 +15,7 @@ class mysqlController {
                     querry += ' AND '
                 }
             }
-           
+            
             this.connection.query(querry,Object.values(request),(error,res)=>{
 		        return results(error,res);
             });
