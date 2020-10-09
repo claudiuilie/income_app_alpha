@@ -13,7 +13,7 @@ router.get('/', (req, res, next) =>  {
     else {
         let mysql = new mysqlController(config.mysql);
         let account = new Account();
-        mysql.select('accounts',{'username':req.session.username},(error,results) => {
+        mysql.query('SELECT * FROM prod_app.my_plate_target WHERE user = "'+req.session.username+'" and date = curdate();',(error,results) => {
             account.setAccount(results[0]);
             res.render('profile', {account: account});
         });
