@@ -120,12 +120,16 @@ router.get('/', (req, res, next) => {
     }
 
     function getTarget(currentResults,total,mealTotals) {
-        mysql.select('my_plate_daily_calculator', { user: req.session.username }, (error, results) => {
+        mysql.query('SELECT protein,kcal,fat,fiber,carbs FROM prod_app.my_plate_target WHERE user = "'+req.session.username+'" and date = curdate();',(error,results) => {
             if (error) {
                 return next(error);
             } else {
+                console.log(results);
+                let target = []
+                if(results.length > 0)
+                    target = results[0]
 
-                res.render('plate_calculator', { article: currentResults, totalArticles: total, totalMeals : mealTotals});
+                res.render('plate_calculator', { article: currentResults, totalArticles: total, totalMeals : mealTotals, dailyTarget: target});
             } 
         });
     }
