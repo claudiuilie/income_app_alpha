@@ -118,13 +118,14 @@ router.post('/', (req, res, next) => {
     }
 
     function checkIfExists(articleInfo, item) {
-
-        mysql.select('my_plate_daily_calculator', { user: req.session.username }, (error, results) => {
+        let currentDate = new Date();
+        mysql.select('my_plate_daily_calculator', { user: req.session.username, date: currentDate.getCurrentDate() }, (error, results) => {
+                
             if (error) {
                 return next(error);
             } else {
-
-                if (results.length > 0) {
+            
+            if (results.length > 0) {
                     let rawData = results[0];
                     let rawMeal = calculateMeal(rawData[item.meal_type], articleInfo, item);
                     updateData({

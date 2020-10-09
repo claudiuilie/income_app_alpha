@@ -50,7 +50,7 @@ router.get('/', (req, res, next) => {
                                 total.fiber += parseFloat(currentResults[k][z].fiber)
                                 total.fat += parseFloat(currentResults[k][z].fat)
                                 total.qty += parseFloat(currentResults[k][z].qty)
-                                console.log(total.qty)
+                 
                             }
                         }
 
