@@ -1,14 +1,14 @@
 <header class="masthead bg-white text-white text-center container" style="padding-top: 7em;padding-bottom: 2em;">
 
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <div class="pb-3">
-                <a href="/plate/calculator/add">
-                    <button type="button" class="btn btn-success btn-sm float-right mb-3">Add</button>
-                </a>
-            </div>
- 
-        <table class="table table-striped table-sm table-responsive ">
+    <div class="row justify-content-center d-block">
+        <div class="container">
+            <a href="/plate/calculator/add">
+                <button type="button" class="btn btn-success btn-sm float-right mb-3">Add</button>
+            </a>
+        </div>
+        {{#if article.breakfast}}
+        <div class="table-responsive container">
+            <table class="table table-striped table-sm">
                 <caption style="font-size:12px">Breakfast</caption>
                 <thead>
                     <tr class="table-info">
@@ -16,11 +16,12 @@
                         <th style="font-size:12px" scope="col">Name</th>
                         <th style="font-size:12px" scope="col">Prot</th>
                         <th style="font-size:12px" scope="col">Kcal</th>
-                        <th style="font-size:12px" scope="col">Carb</th>
                         <th style="font-size:12px" scope="col">Fib</th>
                         <th style="font-size:12px" scope="col">Fat</th>
+                        <th style="font-size:12px" scope="col">Carb</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {{#each article.breakfast}}
                     <tr>
@@ -28,16 +29,18 @@
                         <td style="font-size:12px">{{this.name}}</td>
                         <td style="font-size:12px">{{this.protein}}</td>
                         <td style="font-size:12px">{{this.kcal}}</td>
-                        <td style="font-size:12px">{{this.carbs}}</td>
                         <td style="font-size:12px">{{this.fiber}}</td>
                         <td style="font-size:12px">{{this.fat}}</td>
+                        <td style="font-size:12px">{{this.carbs}}</td>
                     </tr>
                     {{/each}}
                 </tbody>
-        </table>
+            </table>
         </div>
-        <div class="col-auto">
-            <table class="table table-striped table-sm table-responsive ">
+        {{/if}}
+        {{#if article.first_snack}}
+        <div class="table-responsive container">
+            <table class="table table-striped table-sm ">
                 <caption style="font-size:12px">First snack</caption>
                 <thead>
                     <tr class="table-info">
@@ -45,9 +48,9 @@
                         <th style="font-size:12px" scope="col">Name</th>
                         <th style="font-size:12px" scope="col">Prot</th>
                         <th style="font-size:12px" scope="col">Kcal</th>
-                        <th style="font-size:12px" scope="col">Carb</th>
                         <th style="font-size:12px" scope="col">Fib</th>
                         <th style="font-size:12px" scope="col">Fat</th>
+                        <th style="font-size:12px" scope="col">Carb</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,17 +60,18 @@
                         <td style="font-size:12px">{{this.name}}</td>
                         <td style="font-size:12px">{{this.protein}}</td>
                         <td style="font-size:12px">{{this.kcal}}</td>
-                        <td style="font-size:12px">{{this.carbs}}</td>
                         <td style="font-size:12px">{{this.fiber}}</td>
                         <td style="font-size:12px">{{this.fat}}</td>
+                        <td style="font-size:12px">{{this.carbs}}</td>
                     </tr>
                     {{/each}}
-
                 </tbody>
             </table>
         </div>
-        <div class="col-auto">
-            <table class="table table-striped table-sm table-responsive ">
+        {{/if}}
+        {{#if article.lunch}}
+        <div class="table-responsive container">
+            <table class="table table-striped table-sm ">
                 <caption style="font-size:12px">Lunch</caption>
                 <thead>
                     <tr class="table-info">
@@ -75,9 +79,9 @@
                         <th style="font-size:12px" scope="col">Name</th>
                         <th style="font-size:12px" scope="col">Prot</th>
                         <th style="font-size:12px" scope="col">Kcal</th>
-                        <th style="font-size:12px" scope="col">Carb</th>
                         <th style="font-size:12px" scope="col">Fib</th>
                         <th style="font-size:12px" scope="col">Fat</th>
+                        <th style="font-size:12px" scope="col">Carb</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -87,18 +91,19 @@
                         <td style="font-size:12px">{{this.name}}</td>
                         <td style="font-size:12px">{{this.protein}}</td>
                         <td style="font-size:12px">{{this.kcal}}</td>
-                        <td style="font-size:12px">{{this.carbs}}</td>
                         <td style="font-size:12px">{{this.fiber}}</td>
                         <td style="font-size:12px">{{this.fat}}</td>
+                        <td style="font-size:12px">{{this.carbs}}</td>
                     </tr>
                     {{/each}}
 
                 </tbody>
             </table>
         </div>
-
-        <div class="col-auto">
-            <table class="table table-striped table-sm table-responsive ">
+        {{/if}}
+        {{#if article.second_snack}}
+        <div class="table-responsive container">
+            <table class="table table-striped table-sm ">
                 <caption style="font-size:12px">Second snack</caption>
                 <thead>
                     <tr class="table-info">
@@ -106,9 +111,9 @@
                         <th style="font-size:12px" scope="col">Name</th>
                         <th style="font-size:12px" scope="col">Prot</th>
                         <th style="font-size:12px" scope="col">Kcal</th>
-                        <th style="font-size:12px" scope="col">Carb</th>
                         <th style="font-size:12px" scope="col">Fib</th>
                         <th style="font-size:12px" scope="col">Fat</th>
+                        <th style="font-size:12px" scope="col">Carb</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -118,17 +123,19 @@
                         <td style="font-size:12px">{{this.name}}</td>
                         <td style="font-size:12px">{{this.protein}}</td>
                         <td style="font-size:12px">{{this.kcal}}</td>
-                        <td style="font-size:12px">{{this.carbs}}</td>
                         <td style="font-size:12px">{{this.fiber}}</td>
                         <td style="font-size:12px">{{this.fat}}</td>
+                        <td style="font-size:12px">{{this.carbs}}</td>
                     </tr>
                     {{/each}}
 
                 </tbody>
             </table>
         </div>
-        <div class="col-auto">
-            <table class="table table-striped table-sm table-responsive ">
+        {{/if}}
+        {{#if article.dinner}}
+        <div class="table-responsive container">
+            <table class="table table-striped table-sm ">
                 <caption style="font-size:12px">Dinner</caption>
                 <thead>
                     <tr class="table-info">
@@ -136,9 +143,9 @@
                         <th style="font-size:12px" scope="col">Name</th>
                         <th style="font-size:12px" scope="col">Prot</th>
                         <th style="font-size:12px" scope="col">Kcal</th>
-                        <th style="font-size:12px" scope="col">Carb</th>
                         <th style="font-size:12px" scope="col">Fib</th>
                         <th style="font-size:12px" scope="col">Fat</th>
+                        <th style="font-size:12px" scope="col">Carb</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -148,17 +155,19 @@
                         <td style="font-size:12px">{{this.name}}</td>
                         <td style="font-size:12px">{{this.protein}}</td>
                         <td style="font-size:12px">{{this.kcal}}</td>
-                        <td style="font-size:12px">{{this.carbs}}</td>
                         <td style="font-size:12px">{{this.fiber}}</td>
                         <td style="font-size:12px">{{this.fat}}</td>
+                        <td style="font-size:12px">{{this.carbs}}</td>
                     </tr>
                     {{/each}}
 
                 </tbody>
             </table>
         </div>
-        <div class="col-auto">
-            <table class="table table-striped table-sm table-responsive ">
+        {{/if}}
+        {{#if article.extra}}
+        <div class="table-responsive container">
+            <table class="table table-striped table-sm ">
                 <caption style="font-size:12px">Extra</caption>
                 <thead>
                     <tr class="table-info">
@@ -166,9 +175,9 @@
                         <th style="font-size:12px" scope="col">Name</th>
                         <th style="font-size:12px" scope="col">Prot</th>
                         <th style="font-size:12px" scope="col">Kcal</th>
-                        <th style="font-size:12px" scope="col">Carb</th>
                         <th style="font-size:12px" scope="col">Fib</th>
                         <th style="font-size:12px" scope="col">Fat</th>
+                        <th style="font-size:12px" scope="col">Carb</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -178,40 +187,43 @@
                         <td style="font-size:12px">{{this.name}}</td>
                         <td style="font-size:12px">{{this.protein}}</td>
                         <td style="font-size:12px">{{this.kcal}}</td>
-                        <td style="font-size:12px">{{this.carbs}}</td>
                         <td style="font-size:12px">{{this.fiber}}</td>
                         <td style="font-size:12px">{{this.fat}}</td>
+                        <td style="font-size:12px">{{this.carbs}}</td>
                     </tr>
                     {{/each}}
 
                 </tbody>
             </table>
         </div>
-        <div class="col-auto">
-            <table class="table table-striped table-sm table-responsive ">
+        {{/if}}
+        {{#if article}}
+        <div class="table-responsive container">
+            <table class="table table-striped table-sm ">
                 <caption style="font-size:12px">Total</caption>
                 <thead>
                     <tr class="table-info">
                         <th style="font-size:12px" scope="col">Qty</th>
                         <th style="font-size:12px" scope="col">Prot</th>
                         <th style="font-size:12px" scope="col">Kcal</th>
-                        <th style="font-size:12px" scope="col">Carb</th>
                         <th style="font-size:12px" scope="col">Fib</th>
                         <th style="font-size:12px" scope="col">Fat</th>
+                        <th style="font-size:12px" scope="col">Carb</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        
+
                         <th style="font-size:12px" scope="col">{{totalArticles.qty}}gr</th>
                         <th style="font-size:12px" scope="col">{{totalArticles.protein}}gr</th>
                         <th style="font-size:12px" scope="col">{{totalArticles.kcal}}</th>
-                        <th style="font-size:12px" scope="col">{{totalArticles.carbs}}gr</th>
                         <th style="font-size:12px" scope="col">{{totalArticles.fiber}}gr</th>
                         <th style="font-size:12px" scope="col">{{totalArticles.fat}}gr</th>
+                        <th style="font-size:12px" scope="col">{{totalArticles.carbs}}gr</th>
                     </tr>
                 </tbody>
             </table>
         </div>
+        {{/if}}
     </div>
 </header>
