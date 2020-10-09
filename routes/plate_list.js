@@ -15,32 +15,35 @@ router.get('/', (req, res, next) => {
         let mysql = new mysqlController(config.mysql);
 
         mysql.select('my_plate_articles', { 1: 1 }, (error, results) => {
+            if (error) {
+                return next(error);
+            } else {
+                let items = {
+                    proteine: [],
+                    legume: [],
+                    carbohidrati: [],
+                    grasimi: []
+                };
 
-            let items = {
-                proteine: [],
-                legume: [],
-                carbohidrati: [],
-                grasimi: []
-            };
-
-            for (let k in results) {
-                switch (results[k].category) {
-                    case "Proteine":
-                        items.proteine.push(results[k])
-                        break;
-                    case "Legume":
-                        items.legume.push(results[k])
-                        break;
-                    case "Carbohidrati":
-                        items.carbohidrati.push(results[k])
-                        break;
-                    case "Grasimi":
-                        items.grasimi.push(results[k])
-                        break;
+                for (let k in results) {
+                    switch (results[k].category) {
+                        case "Proteine":
+                            items.proteine.push(results[k])
+                            break;
+                        case "Legume":
+                            items.legume.push(results[k])
+                            break;
+                        case "Carbohidrati":
+                            items.carbohidrati.push(results[k])
+                            break;
+                        case "Grasimi":
+                            items.grasimi.push(results[k])
+                            break;
+                    }
                 }
-            }
 
-            res.render('plate_list', { item: items });
+                res.render('plate_list', { item: items });
+            }
         });
     }
 });

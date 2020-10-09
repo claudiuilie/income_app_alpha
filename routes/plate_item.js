@@ -14,12 +14,15 @@ router.get('/', (req, res, next) => {
 
         let mysql = new mysqlController(config.mysql);
         let item;
-        mysql.select('my_plate_articles', req.query , (error, results) => {
+        mysql.select('my_plate_articles', req.query, (error, results) => {
+            if (error) {
+                return next(error);
+            } else {
+                item = results[0];
+                console.log(item);
 
-            item = results[0];
-            console.log(item);
-
-            res.render('plate_item', {article:item });
+                res.render('plate_item', { article: item });
+            }
         });
     }
 });

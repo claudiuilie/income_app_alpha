@@ -18,9 +18,56 @@ router.get('/', (req, res, next) => {
     else {
 
         let mysql = new mysqlController(config.mysql);
-        mysql.select('my_plate_articles', { 1: 1 }, (error, results) => {
 
-            res.render('plate_calculator_add', { articles: results });
+        mysql.query('SELECT * FROM my_plate_articles ORDER BY category_id desc;', (error, results) => {
+            if(error) {
+                return next(error);
+            }else{
+                
+                let animalProteinItems = [];
+                let vegetalProteinItems = [];
+                let vegetablesItems = [];
+                let carbsItems = [];
+                let fruitsItems = [];
+                let nutsItems = [];
+                let herbalProductsItems = [];
+
+                for(let k in results){
+                    switch(true){
+                        case results[k].category_id == '1':
+                            animalProteinItems.push(results[k])
+                        break;
+                        case results[k].category_id == '2':
+                            vegetalProteinItems.push(results[k])
+                        break;
+                        case results[k].category_id == '3':
+                            vegetablesItems.push(results[k])
+                        break;
+                        case results[k].category_id == '4':
+                            carbsItems.push(results[k])
+                        break;
+                        case results[k].category_id == '5':
+                            fruitsItems.push(results[k])
+                        break;
+                        case results[k].category_id == '6':
+                            nutsItems.push(results[k])
+                        break;
+                        case results[k].category_id == '7':
+                            herbalProductsItems.push(results[k])
+                        break;
+                    }
+                }
+
+                res.render('plate_calculator_add', { 
+                    animalProtein: animalProteinItems,
+                    vegetalProtein: vegetalProteinItems,
+                    vegetables: vegetablesItems,
+                    carbs: carbsItems,
+                    fruits: fruitsItems,
+                    nuts: nutsItems,
+                    herbalProducts: herbalProductsItems
+                });
+            }
         });
     }
 });
@@ -83,6 +130,7 @@ router.post('/', (req, res, next) => {
                     updateData({
                         [item.meal_type]: JSON.stringify(rawMeal)
                     })
+
 
                 } else {
                     let rawMeal = calculateMeal(null, articleInfo, item);

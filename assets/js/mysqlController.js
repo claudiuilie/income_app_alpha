@@ -59,6 +59,12 @@ class mysqlController {
             return results(error,res);
         })
     }
+
+    query(request,results) {
+        this.connection.query(request,{},(error,res)=> {
+            return results(error,res);
+        })
+    }
 }
 
 module.exports = mysqlController;
