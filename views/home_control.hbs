@@ -1,10 +1,9 @@
-
 <div class="container">
     <header class="masthead bg-white text-white text-center" style="padding-top: 7em;padding-bottom: 2em;">
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
                 <div class="row">
-                    {{#each sensors}}
+
                     <div class="col-md-6 col-lg-4">
                         <div class="portfolio-item mx-auto ">
                             <div class="card text-center text-primary ">
@@ -14,62 +13,97 @@
                                 <div class="card-body">
                                     <div class="m-0">
                                         <div class="container">
-                                            <div class="GaugeMeter float-left" id="GaugeMeter_1" data-used="{{this.temp}}"
-                                                data-min="0" data-total="40" data-text="{{this.temp}}&#8451" data-style="Arch"
-                                                data-theme="Green-Gold-Red" data-label="Temperature" data-showvalue="10"></div>
-                                            <div class="GaugeMeter float-right" id="GaugeMeter_2" data-used="{{this.humidity}}"
-                                                data-min="0" data-total="100" data-text='{{this.humidity}}&#8274' data-style="Arch"
+                                            <div class="GaugeMeter float-left" id="GaugeMeter_1"
+                                                data-used="{{sensors.temperature}}" data-min="0" data-total="40"
+                                                data-text="{{sensors.temperature}}&#8451" data-style="Arch"
+                                                data-theme="Green-Gold-Red" data-label="Temperature"
+                                                data-showvalue="10"></div>
+                                            <div class="GaugeMeter float-right" id="GaugeMeter_2"
+                                                data-used="{{sensors.humidity}}" data-min="0" data-total="100"
+                                                data-text='{{sensors.humidity}}&#8274' data-style="Arch"
                                                 data-theme="Green-Gold-Red" data-label="Humidity"></div>
+                                            <div class="GaugeMeter float-right" id="GaugeMeter_3"
+                                                data-used="{{sensors.soil_moisture}}" data-min="0" data-total="100"
+                                                data-text='{{sensors.soil_moisture}}&#8274' data-style="Arch"
+                                                data-theme="Green-Gold-Red" data-label="Soil Moisture"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="container p-2">
-                                    {{#each this.relays}}
                                     <div class="container ">
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input " id="{{this.id}}"
-                                                onclick="switchHandler(this)" {{#unless this.status}}checked{{/unless}} {{#if this.webhook}}
-                                                value="{{this.webhook}}" {{else}} value="" {{/if}}>
-                                            <label class="custom-control-label" for="{{this.id}}"><span>{{this.name}}</span></label>
+                                            <input type="checkbox" class="custom-control-input" id="4"
+                                                onclick="switchHandler(this)"
+                                                {{#unless sensors.fan_off}}checked{{/unless}} value="">
+                                            <label class="custom-control-label float-left"
+                                                for="4"><span>Fan</span></label>
                                         </div>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="3"
+                                                onclick="switchHandler(this)"
+                                                {{#unless sensors.pomp_off}}checked{{/unless}} value="">
+                                            <label class="custom-control-label float-left" for="3"><span>Water
+                                                    pomp</span></label>
+                                        </div>
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="5"
+                                                onclick="switchHandler(this)"
+                                                {{#unless sensors.veg_lamp_off}}checked{{/unless}} value="">
+                                            <label class="custom-control-label float-left" for="5"><span>LED Veg
+                                                    level</span></label>
+                                        </div>
+
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="6"
+                                                onclick="switchHandler(this)"
+                                                {{#unless sensors.fruit_lamp_off}}checked{{/unless}} value="">
+                                            <label class="custom-control-label float-left" for="6"><span>LED Fruit
+                                                    level</span></label>
+                                        </div>
+
                                     </div>
-                                    {{/each}}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {{/each}}
-                    <div class="col-md-6 col-lg-4">
-                    <div class="portfolio-item mx-auto">
-                        <div class="card text-center text-primary">
-                            <div class="card-header p-0">
-                                <span><i>Daily temperature</i>
-                                </span></br>
-                                <input type="text" class="border-0 bg-primary rounded histCalendar mb-2 text-center text-light " id="dailyTempHist" readonly="true"  value="{{tempHistory.date}}"
-                                    onclick="calendarHandler(this)" /></br>
-                                <span class="mb-2 p-1 rounded"
-                                    style="border:1px solid red ;background-color:rgba(255,226,0,0.19);color:red;display: none;"></span>
-                            </div>
-                            <div class="card-body">
-                                <div class="m-0">
-                                    <div class="container">
-                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="container p-2" style=" height:40vh; width:100%">
-                                <canvas id="temperatureHistoryChart"></canvas>
-                            </div>
-                        </div>
-                        </div>
-                </div>
+
                     <div class="col-md-6 col-lg-4">
                         <div class="portfolio-item mx-auto">
                             <div class="card text-center text-primary">
                                 <div class="card-header p-0">
-                                    <span><i>Daily humidity</i></span></br>
-                                    <input type="text" class="border-0 bg-primary rounded histCalendar mb-2 text-center text-light " id="dailyHumHist" readonly="true"  value="{{tempHistory.date}}" onclick="calendarHandler(this)"/></br>
-                                    <span class="p-1 rounded" style="border:1px solid red ;background-color:rgba(255,226,0,0.19);color:red;display: none;"></span>
+                                    <span><i>Temperature</i>
+                                    </span></br>
+                                    <input type="text"
+                                        class="border-0 bg-primary rounded histCalendar mb-2 text-center text-light "
+                                        id="dailyTempHist" readonly="true" value="{{tempHistory.date}}"
+                                        onclick="calendarHandler(this)" /></br>
+                                    <span class="mb-2 p-1 rounded"
+                                        style="border:1px solid red ;background-color:rgba(255,226,0,0.19);color:red;display: none;"></span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="m-0">
+                                        <div class="container">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container p-2" style=" height:40vh; width:100%">
+                                    <canvas id="temperatureHistoryChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="portfolio-item mx-auto">
+                            <div class="card text-center text-primary">
+                                <div class="card-header p-0">
+                                    <span><i>Humidity</i></span></br>
+                                    <input type="text"
+                                        class="border-0 bg-primary rounded histCalendar mb-2 text-center text-light "
+                                        id="dailyHumHist" readonly="true" value="{{tempHistory.date}}"
+                                        onclick="calendarHandler(this)" /></br>
+                                    <span class="p-1 rounded"
+                                        style="border:1px solid red ;background-color:rgba(255,226,0,0.19);color:red;display: none;"></span>
                                 </div>
                                 <div class="card-body">
                                     <div class="m-0">
@@ -84,6 +118,32 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="portfolio-item mx-auto">
+                            <div class="card text-center text-primary">
+                                <div class="card-header p-0">
+                                    <span><i>Soil moisture</i>
+                                    </span></br>
+                                    <input type="text"
+                                        class="border-0 bg-primary rounded histCalendar mb-2 text-center text-light "
+                                        id="dailySoilHist" readonly="true" value="{{tempHistory.date}}"
+                                        onclick="calendarHandler(this)" /></br>
+                                    <span class="mb-2 p-1 rounded"
+                                        style="border:1px solid red ;background-color:rgba(255,226,0,0.19);color:red;display: none;"></span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="m-0">
+                                        <div class="container">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container p-2" style=" height:40vh; width:100%">
+                                    <canvas id="soilMoistureHistoryChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -91,140 +151,137 @@
 </div>
 <script src="/js/GaugeMeter.js"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $(".GaugeMeter").gaugeMeter();
     });
-    
-        let calendarId;
-        function switchHandler(elem) {
 
-            blockControl(elem);
+    let calendarId;
+    function switchHandler(elem) {
 
-            $.ajax({
-                method: "POST",
-                url: "/control",
-                data: { "relayId": elem.id, "status": elem.checked, "switch": elem.value }
-            }).done(function () {
-                unblockControl(elem)
-            })
-        }
+        blockControl(elem);
+
+        $.ajax({
+            method: "POST",
+            url: "/control",
+            data: { "relayId": elem.id, "status": elem.checked, "switch": elem.value }
+        }).done(function () {
+            unblockControl(elem)
+        })
+    }
 
     function updateHistoryChart(chart, dataset) {
-
         chart.data.labels = dataset.history.sensorLabels
 
         if (dataset.temp) {
             chart.data.datasets[0].data = dataset.history.tempData
-            chart.data.datasets[1].data = dataset.history.weatherTempData
         }
         else if (dataset.hum) {
             chart.data.datasets[0].data = dataset.history.humidityData
-            chart.data.datasets[1].data = dataset.history.weatherHumData
+        }
+        else if (dataset.soil) {
+            chart.data.datasets[0].data = dataset.history.soilMoistureData
         }
         chart.update();
     }
 
-        function calendarHandler(elem) {
-            calendarId = elem
-        }
+    function calendarHandler(elem) {
+        calendarId = elem
+    }
 
-        $(function () {
-            $('.histCalendar').daterangepicker({
-                singleDatePicker: true,
-                showDropdowns: true,
-                minYear: 2019,
-                maxYear: parseInt(moment().format('YYYY'), 10),
-                opens: "center"
-            }, function (start, end, label) {
-                
+    $(function () {
+        $('.histCalendar').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 2019,
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            opens: "center"
+        }, function (start, end, label) {
 
-                let date = new Date(start._d)
-                let filteredTime = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-                
+
+            let date = new Date(start._d)
+            let filteredTime = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
             blockControl(calendarId);
 
-                $.ajax({
-                    method: "POST",
-                    url: "/control/history",
-                    data: { "date": filteredTime , "calendarId":calendarId.id}
-                }).done(function (newChart) {
+            $.ajax({
+                method: "POST",
+                url: "/control/history",
+                data: { "date": filteredTime, "calendarId": calendarId.id }
+            }).done(function (newChart) {
 
-                    
-                    if (newChart.found){
-                       
-                        if (newChart.calendar == "dailyTempHist") {
-                            newChart["temp"] = true;
-                            updateHistoryChart(monthlyTempChart,newChart)
-                        }
-                        else if (newChart.calendar == "dailyHumHist") {
-                            newChart["hum"] = true;
-                            updateHistoryChart(monthlyHumChart,newChart)
-                        }
-                    }else{
-                         
-                        $($(`#${newChart.calendar}`).parent().children()[4]).html(newChart.message);
-                        $($(`#${newChart.calendar}`).parent().children()[4]).show();
 
-                        setTimeout(()=>{
-                            $($(`#${newChart.calendar}`).parent().children()[4]).hide('slow');
-                        },1500)
+                if (newChart.found) {
+
+                    if (newChart.calendar == "dailyTempHist") {
+                        newChart["temp"] = true;
+                        updateHistoryChart(monthlyTempChart, newChart)
                     }
-                    unblockControl(calendarId)
-                })
-            });
+                    else if (newChart.calendar == "dailyHumHist") {
+                        newChart["hum"] = true;
+                        updateHistoryChart(monthlyHumChart, newChart)
+                    }
+                    else if (newChart.calendar == "dailySoilHist") {
+                        newChart["soil"] = true;
+                        updateHistoryChart(monthlySoilChart, newChart)
+                    }
+                } else {
+
+                    $($(`#${newChart.calendar}`).parent().children()[4]).html(newChart.message);
+                    $($(`#${newChart.calendar}`).parent().children()[4]).show();
+
+                    setTimeout(() => {
+                        $($(`#${newChart.calendar}`).parent().children()[4]).hide('slow');
+                    }, 1500)
+                }
+                unblockControl(calendarId)
+            })
         });
+    });
 </script>
 <script src="/js/chart.js"></script>
 <script>
-    
+
     var ctxTempGraph = document.getElementById('temperatureHistoryChart');
     var monthlyTempChart = new Chart(ctxTempGraph, {
         type: 'bar',
         data: {
             labels: "{{tempHistory.sensorLabels}}".split(","),
             datasets: [{
-                label: "Sensors",
-                data: [{{tempHistory.tempData}}],
-                backgroundColor:'rgba(255,226,0,0.19)',
-                borderColor: 'rgb(255,238,0)',
-                borderWidth: 1
-            },
-                {
-                    label: "Weather",
-                    data: [{{tempHistory.weatherTempData}}],
-                    backgroundColor:'rgba(0,211,255,0.17)',
-                    borderColor: 'rgba(0,211,255,0.78)',
-                    borderWidth: 1
-                }]
-        },
+                label: "Temperature",
+                data: [{{ tempHistory.tempData }}],
+            backgroundColor: 'rgba(255,226,0,0.19)',
+            borderColor: 'rgb(255,238,0)',
+            borderWidth: 1
+        }]
+    },
         options: {
-            maintainAspectRatio: false,
-            scales: {
-                yAxes: [{
-                    offset: true,
-                    ticks: {
-                        beginAtZero: true,
-                        minRotation: 0,
-                        maxRotation: 50,
-                        mirror: false,
-                        padding: 0,
-                        reverse: false,
-                        display: true,
-                        autoSkip: false,
-                        autoSkipPadding: 0,
-                        labelOffset: 0
-                    },
-                    gridLines: {
-                        display: false
-                    }
-                }],
-                xAxes: [{
-                    gridLines: {
-                        display: false
-                    }
-                }]
-            }
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                offset: true,
+                ticks: {
+                    beginAtZero: true,
+                    minRotation: 0,
+                    maxRotation: 50,
+                    mirror: false,
+                    padding: 0,
+                    reverse: false,
+                    display: true,
+                    autoSkip: false,
+                    autoSkipPadding: 0,
+                    labelOffset: 0
+                },
+                gridLines: {
+                    display: false
+                }
+            }],
+            xAxes: [{
+                gridLines: {
+                    display: false
+                }
+            }]
         }
+    }
     });
 
     var ctxHumGraph = document.getElementById('humidityHistoryChart');
@@ -233,48 +290,83 @@
         data: {
             labels: "{{tempHistory.sensorLabels}}".split(","),
             datasets: [{
-                label: "Sensors",
-                data: [{{tempHistory.humidityData}}],
-                backgroundColor:'rgba(0,188,0,0.19)',
-                borderColor: 'rgb(0,188,0)',
-                borderWidth: 1
-            },
-                {
-                    label: "Weather",
-                    data: [{{tempHistory.weatherHumData}}],
-                    backgroundColor:'rgba(0,211,255,0.17)',
-                    borderColor: 'rgba(0,211,255,0.78)',
-                    borderWidth: 1
-                }]
-        },
+                label: "Himidity",
+                data: [{{ tempHistory.humidityData }}],
+            backgroundColor: 'rgba(0,188,0,0.19)',
+            borderColor: 'rgb(0,188,0)',
+            borderWidth: 1
+        }]
+    },
         options: {
-            maintainAspectRatio: false,
-            scales: {
-                yAxes: [{
-                    offset: true,
-                    ticks: {
-                        beginAtZero: true,
-                        minRotation: 0,
-                        maxRotation: 50,
-                        mirror: false,
-                        padding: 0,
-                        reverse: false,
-                        display: true,
-                        autoSkip: false,
-                        autoSkipPadding: 0,
-                        labelOffset: 0
-                    },
-                    gridLines: {
-                        display: false
-                    }
-                }],
-                xAxes: [{
-                    gridLines: {
-                        display: false
-                    }
-                }]
-            }
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                offset: true,
+                ticks: {
+                    beginAtZero: true,
+                    minRotation: 0,
+                    maxRotation: 50,
+                    mirror: false,
+                    padding: 0,
+                    reverse: false,
+                    display: true,
+                    autoSkip: false,
+                    autoSkipPadding: 0,
+                    labelOffset: 0
+                },
+                gridLines: {
+                    display: false
+                }
+            }],
+            xAxes: [{
+                gridLines: {
+                    display: false
+                }
+            }]
         }
+    }
+    });
+
+    var ctxTempGraph = document.getElementById('soilMoistureHistoryChart');
+    var monthlySoilChart = new Chart(ctxTempGraph, {
+        type: 'bar',
+        data: {
+            labels: "{{tempHistory.sensorLabels}}".split(","),
+            datasets: [{
+                label: "Soil Moisture",
+                data: [{{ tempHistory.soilMoistureData }}],
+            backgroundColor: 'rgba(70, 248, 252,0.19)',
+            borderColor: 'rgb(70, 248, 252)',
+            borderWidth: 1
+        }]
+    },
+        options: {
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                offset: true,
+                ticks: {
+                    beginAtZero: true,
+                    minRotation: 0,
+                    maxRotation: 50,
+                    mirror: false,
+                    padding: 0,
+                    reverse: false,
+                    display: true,
+                    autoSkip: false,
+                    autoSkipPadding: 0,
+                    labelOffset: 0
+                },
+                gridLines: {
+                    display: false
+                }
+            }],
+            xAxes: [{
+                gridLines: {
+                    display: false
+                }
+            }]
+        }
+    }
     });
 </script>
-

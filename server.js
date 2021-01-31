@@ -4,10 +4,10 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const exphbs  = require('express-handlebars');
 const options = require('./assets/config/config');
-const cron = require('./assets/crons/temperatureCron');
+const cron = require('./assets/crons/greenhouseCron');
 const mysql = require('mysql');
 const mysqltorest  = require('mysql-to-rest');
-const temperatureCron = new cron();
+const greenhouseCron = new cron();
 const passwordHash = require('password-hash');
 
 let api;
