@@ -8,7 +8,20 @@
                         <div class="portfolio-item mx-auto ">
                             <div class="card text-center text-primary ">
                                 <div class="card-header p-0">
-                                    <span><i class="{{this.icon}}"></i></span></br>
+
+                                    {{#if schedule.veg_phase}}
+                                    <span><i class="fas fa-seedling"></i></span>
+                                    <span class="badge-primary badge">Phase: veg</span>
+                                    <span><i class="fas fa-seedling"></i></span>
+                                    {{/if}}
+                                    {{#if schedule.fruit_phase}}
+                                    <span><i class="fas fa-seedling"></i></span>
+                                    <span class="badge-primary badge">Phase: fruit</span>
+                                    <span><i class="fas fa-seedling"></i></span></br>
+                                    {{/if}}
+                                    <span class="badge-primary badge">Schedule: {{schedule.lamp_start}}:00 -
+                                        {{schedule.lamp_stop}}:00</span>
+
                                 </div>
                                 <div class="card-body">
                                     <div class="m-0">
@@ -33,30 +46,30 @@
                                     <div class="container ">
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" class="custom-control-input" id="4"
-                                                onclick="switchHandler(this)"
-                                                {{#unless sensors.fan_off}}checked{{/unless}} value="">
+                                                onclick="switchHandler(this)" {{#unless
+                                                sensors.fan_off}}checked{{/unless}} value="">
                                             <label class="custom-control-label float-left"
                                                 for="4"><span>Fan</span></label>
                                         </div>
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" class="custom-control-input" id="3"
-                                                onclick="switchHandler(this)"
-                                                {{#unless sensors.pomp_off}}checked{{/unless}} value="">
+                                                onclick="switchHandler(this)" {{#unless
+                                                sensors.pomp_off}}checked{{/unless}} value="">
                                             <label class="custom-control-label float-left" for="3"><span>Water
                                                     pomp</span></label>
                                         </div>
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" class="custom-control-input" id="5"
-                                                onclick="switchHandler(this)"
-                                                {{#unless sensors.veg_lamp_off}}checked{{/unless}} value="">
+                                                onclick="switchHandler(this)" {{#unless
+                                                sensors.veg_lamp_off}}checked{{/unless}} value="">
                                             <label class="custom-control-label float-left" for="5"><span>LED Veg
                                                     level</span></label>
                                         </div>
 
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" class="custom-control-input" id="6"
-                                                onclick="switchHandler(this)"
-                                                {{#unless sensors.fruit_lamp_off}}checked{{/unless}} value="">
+                                                onclick="switchHandler(this)" {{#unless
+                                                sensors.fruit_lamp_off}}checked{{/unless}} value="">
                                             <label class="custom-control-label float-left" for="6"><span>LED Fruit
                                                     level</span></label>
                                         </div>
@@ -144,8 +157,40 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="portfolio-item mx-auto ">
+                            <div class="card text-center text-primary ">
+                                <div class="card-header p-0">
+                                    Relays
+                                </div>
+                                <div class="card-body p-0">
+                                    <table class="table table-sm table-responsive table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Hour</th>
+                                                <th scope="col">Fan</th>
+                                                <th scope="col">Pomp</th>
+                                                <th scope="col">VegLamp</th>
+                                                <th scope="col">FruitLamp</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each history}}
+                                                
+                                            <tr > 
+                                                <th scope="row">{{this.modified}}</th>
+                                                <td>{{#if this.fan_off}} <i class="fas fa-stop-circle text-danger"></i>{{else}} <i class="fas fa-play-circle text-success"></i> {{/if}}</td>
+                                                <td>{{#if this.pomp_off}} <i class="fas fa-stop-circle text-danger"></i>{{else}} <i class="fas fa-play-circle text-success"></i> {{/if}}</td>
+                                                <td>{{#if this.veg_lamp_off}} <i class="fas fa-stop-circle text-danger"></i>{{else}} <i class="fas fa-play-circle text-success"></i> {{/if}}</td>
+                                                <td>{{#if this.fruit_lamp_off}} <i class="fas fa-stop-circle text-danger"></i>{{else}} <i class="fas fa-play-circle text-success"></i> {{/if}}</td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         </section>
     </header>
 </div>

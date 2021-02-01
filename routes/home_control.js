@@ -25,17 +25,41 @@ router.get('/', (req, res, next) => {
             responseBody = JSON.parse(body);
             greenHouseStats = responseBody.variables;
 
+
+
             mysql.select('greenhouse_monitor', { "date": date.getCurrentDate() }, (error, results) => {
                 if (error) {
                     return next(error);
                 }
+
+                let chart = new Chart(results, date.revertCurrentDate());
+                let fullHistory = results;
+
                 
-                let chart = new Chart(results, date.revertCurrentDate())
+                for (let k in fullHistory){
+                    if(fullHistory[k].modified){
+                        fullHistory[k].modified = new Date(fullHistory[k].modified).getHours();
+                    }
+                       
+                }
+
+
                 console.log(greenHouseStats)
-                res.render('home_control', {
-                    sensors: greenHouseStats,
-                    tempHistory: chart
-                });
+
+                mysql.select('greenhouse_schedule', { "active": 1 }, (error, results) => {
+                    if (error) {
+                        return next(error);
+                    }
+                    console.log(results);
+                    let scheduleData = results[0];
+
+                    res.render('home_control', {
+                        sensors: greenHouseStats,
+                        tempHistory: chart,
+                        schedule: scheduleData,
+                        history: fullHistory
+                    });
+                })
             });
         });
     }
@@ -75,7 +99,7 @@ router.post('/history', (req, res, next) => {
                 if (error) {
                     return next(error);
                 }
-console.log(results);
+                console.log(results);
                 if (results.length > 0) {
 
                     let chart = new Chart(results, date.revertCurrentDate());
