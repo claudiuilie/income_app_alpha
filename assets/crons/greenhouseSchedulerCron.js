@@ -14,7 +14,6 @@ class greenhouseSchedulerCron {
         cron.schedule('00 5,10,15,20,25,30,35,40,45,50,55 0-23 * * *', () => {
 
             console.log("cron scheduler");
-
             request(config.arduino.host, (error, response, body) => {
 
                 if (error) {
@@ -68,7 +67,7 @@ class greenhouseSchedulerCron {
             }
     
             function startLamp(type, active) {
-    
+                console.log(active)
                 if (active) {
                     request(`${config.arduino.host}/${type}?params=1`, (error, response, body) => {
     
@@ -84,7 +83,7 @@ class greenhouseSchedulerCron {
             }
     
             function stopLamp() {
-                request(`${config.arduino.host}/vegPhase?params=1`, (error, response, body) => {
+                request(`${config.arduino.host}/vegPhase?params=0`, (error, response, body) => {
     
                     if (error) {
                         console.log(error)

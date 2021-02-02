@@ -19,7 +19,7 @@
                                     <span class="badge-primary badge">Phase: fruit</span>
                                     <span><i class="fas fa-seedling"></i></span></br>
                                     {{/if}}
-                                    <span class="badge-primary badge">Schedule: {{schedule.lamp_start}}:00 -
+                                    <span class="badge-primary badge"> <i class="far fa-calendar-alt"></i> {{schedule.lamp_start}}:00 -
                                         {{schedule.lamp_stop}}:00</span>
 
                                 </div>
@@ -43,35 +43,47 @@
                                     </div>
                                 </div>
                                 <div class="container p-2">
-                                    <div class="container ">
+                                    <div class="container text-muted">
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="4"
+                                            <input type="checkbox" class="custom-control-input" id="0"
+                                                onclick="switchToggle(this)" value="">
+                                            <label class="custom-control-label " for="0">
+                                                 <span><i class="fas fa-lock" id="lock-badge"></i></span>
+                                                <span></span></label>
+                                        </div>
+                                        <div class="custom-control custom-switch">
+
+                                            <input type="checkbox" disabled class="custom-control-input" id="4"
                                                 onclick="switchHandler(this)" {{#unless
                                                 sensors.fan_off}}checked{{/unless}} value="">
-                                            <label class="custom-control-label float-left"
-                                                for="4"><span>Fan</span></label>
+                                            <label class="custom-control-label float-left" for="4">
+                                                <i class="fas fa-fan"></i>
+                                                <span>Fan</span></label>
                                         </div>
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="3"
+                                            <input type="checkbox" disabled class="custom-control-input" id="3"
                                                 onclick="switchHandler(this)" {{#unless
                                                 sensors.pomp_off}}checked{{/unless}} value="">
-                                            <label class="custom-control-label float-left" for="3"><span>Water
-                                                    pomp</span></label>
+                                            <label class="custom-control-label float-left" for="3">
+                                                <i class="fas fa-shower"></i>
+                                                <span>Water pomp</span></label>
                                         </div>
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="5"
+                                            <input type="checkbox" disabled class="custom-control-input" id="5"
                                                 onclick="switchHandler(this)" {{#unless
                                                 sensors.veg_lamp_off}}checked{{/unless}} value="">
-                                            <label class="custom-control-label float-left" for="5"><span>LED Veg
-                                                    level</span></label>
+                                            <label class="custom-control-label float-left" for="5">
+                                                <i class="far fa-lightbulb"></i>
+                                                <span>LED Veg level</span></label>
                                         </div>
 
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="6"
+                                            <input type="checkbox" disabled class="custom-control-input" id="6"
                                                 onclick="switchHandler(this)" {{#unless
                                                 sensors.fruit_lamp_off}}checked{{/unless}} value="">
-                                            <label class="custom-control-label float-left" for="6"><span>LED Fruit
-                                                    level</span></label>
+                                            <label class="custom-control-label float-left" for="6">
+                                                <i class="far fa-lightbulb"></i>
+                                                <span>LED Fruit level</span></label>
                                         </div>
 
                                     </div>
@@ -163,7 +175,7 @@
                                 <div class="card-header p-0">
                                     Relays
                                 </div>
-                                <div class="card-body p-0">
+                                <div class="card-body">
                                     <table class="table table-sm table-responsive table-striped">
                                         <thead>
                                             <tr>
@@ -176,13 +188,21 @@
                                         </thead>
                                         <tbody>
                                             {{#each history}}
-                                                
-                                            <tr > 
+
+                                            <tr>
                                                 <th scope="row">{{this.modified}}</th>
-                                                <td>{{#if this.fan_off}} <i class="fas fa-stop-circle text-danger"></i>{{else}} <i class="fas fa-play-circle text-success"></i> {{/if}}</td>
-                                                <td>{{#if this.pomp_off}} <i class="fas fa-stop-circle text-danger"></i>{{else}} <i class="fas fa-play-circle text-success"></i> {{/if}}</td>
-                                                <td>{{#if this.veg_lamp_off}} <i class="fas fa-stop-circle text-danger"></i>{{else}} <i class="fas fa-play-circle text-success"></i> {{/if}}</td>
-                                                <td>{{#if this.fruit_lamp_off}} <i class="fas fa-stop-circle text-danger"></i>{{else}} <i class="fas fa-play-circle text-success"></i> {{/if}}</td>
+                                                <td>{{#if this.fan_off}} <i
+                                                        class="fas fa-stop-circle text-danger"></i>{{else}} <i
+                                                        class="fas fa-play-circle text-success"></i> {{/if}}</td>
+                                                <td>{{#if this.pomp_off}} <i
+                                                        class="fas fa-stop-circle text-danger"></i>{{else}} <i
+                                                        class="fas fa-play-circle text-success"></i> {{/if}}</td>
+                                                <td>{{#if this.veg_lamp_off}} <i
+                                                        class="fas fa-stop-circle text-danger"></i>{{else}} <i
+                                                        class="fas fa-play-circle text-success"></i> {{/if}}</td>
+                                                <td>{{#if this.fruit_lamp_off}} <i
+                                                        class="fas fa-stop-circle text-danger"></i>{{else}} <i
+                                                        class="fas fa-play-circle text-success"></i> {{/if}}</td>
                                             </tr>
                                             {{/each}}
                                         </tbody>
@@ -201,6 +221,28 @@
     });
 
     let calendarId;
+
+    function switchToggle(elem) {
+
+        let lock = document.getElementById("lock-badge");
+        if(elem.checked){
+            lock.className = "fas fa-unlock"
+        }else{
+            lock.className = "fas fa-lock"
+        }
+        
+
+        blockControl(elem);
+        for (let i = 3; i <= 6; i++) {
+            if (!$("#" + i)[0].disabled) {
+                document.getElementById(i).setAttribute("disabled", "true");
+            } else {
+                document.getElementById(i).removeAttribute("disabled");
+                document.getElementById(i).focus();
+            }
+        }
+        unblockControl(elem);
+    }
     function switchHandler(elem) {
 
         blockControl(elem);
