@@ -1,0 +1,39 @@
+class Options {
+    constructor() {
+        this.server =  {
+                host:'192.168.1.102',
+                port:'8008'
+        }
+
+        this.mysql  =  {
+                host     :'192.168.' ,
+                user     :'prod_app',
+                password :'Bulgaria188' ,
+                database :'prod_app'
+        }
+	this.arduino = {
+		host:'http://192.168.1.103'
+	}
+	 this.eWelink = {
+            email: 'claudiu.ilie0322@gmail.com',
+            password: 'Bulgaria188',
+        }
+            this.crons = {
+            temperatureCron : {
+            interval : '00 00 0-23 * * *'
+           }
+        }
+            this.weather = {
+                host: "https://api.openweathermap.org/data/2.5/weather",
+                city:"Bragadiru",
+                key: "cd86b6b78b174125bfddf3cc26d7105a",
+                units: "metric"
+            }
+        this.mysqlTables = {
+            tempMonitor: 'temperature_monitor',
+            tempMonitorLogs: 'temperature_monitor_logs'
+        }
+    }
+}
+
+module.exports = Options ;

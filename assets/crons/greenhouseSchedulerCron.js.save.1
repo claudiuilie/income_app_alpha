@@ -22,7 +22,7 @@ class greenhouseSchedulerCron {
                     let responseBody = JSON.parse(body);
                     let sensors = responseBody.variables;
 
-                     if(sensors.fan_off){
+                    if(sensors.fan_off){
                          startFan()
                      }
                     validateLampPhase();
