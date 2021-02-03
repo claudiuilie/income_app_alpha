@@ -7,20 +7,110 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="portfolio-item mx-auto ">
                             <div class="card text-center text-primary ">
-                                <div class="card-header p-0">
+                                <div class="card-header p-1">
+                                     <span><i>Greenhouse status</i></br>
+                                    <div class="btn-group">
+                                        <button type="button" class="badge btn btn-primary btn-sm dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {{#if schedule.veg_phase}}
+                                            <i class="fas fa-seedling"></i>Phase: veg
+                                            {{/if}}
+                                            {{#if schedule.fruit_phase}}
+                                            <span><i class="fas fa-seedling"></i>Phase: fruit
+                                            {{/if}}
+                                        </button>
+                                        <div class="dropdown-menu text-muted">
+                                            <form class="p-2 was-validated text-center" method="POST" action="/control/phase">
+                                            <i class="fas fa-seedling"></i> Phase
+                                            <div class="dropdown-divider"></div>
+                                                <div class="form-group text-center ">
+                                                    <select  required name="phase_id"class="form-control form-control-sm" id="phaseSelector" style="appearance: none;">
+                                                        <option value="">Select phase</option>
+                                                        <option value="1">Vegetative</option>
+                                                        <option value ="2">Fruit</option>
+                                                    </select>
+                                                </div>
+                                                <div class="dropdown-divider"></div>
+                                                <button type="submit " class="btn btn-success btn-block btn-sm">Update</button>
+                                            </form>
+                                        </div>
+                                    </div>
 
-                                    {{#if schedule.veg_phase}}
-                                    <span><i class="fas fa-seedling"></i></span>
-                                    <span class="badge-primary badge">Phase: veg</span>
-                                    <span><i class="fas fa-seedling"></i></span></br>
-                                    {{/if}}
-                                    {{#if schedule.fruit_phase}}
-                                    <span><i class="fas fa-seedling"></i></span>
-                                    <span class="badge-primary badge">Phase: fruit</span>
-                                    <span><i class="fas fa-seedling"></i></span></br>
-                                    {{/if}}
-                                    <span class="badge-primary badge"> <i class="far fa-calendar-alt"></i> {{schedule.lamp_start}}:00 -
-                                        {{schedule.lamp_stop}}:00</span>
+                                    <div class="btn-group">
+                                        <button type="button" class="badge btn btn-primary btn-sm dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="far fa-calendar-alt"></i>
+                                            {{schedule.lamp_start}}:00 -
+                                            {{schedule.lamp_stop}}:00
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right text-muted">
+                                            <form class="p-2 was-validated text-center" method="POST" action="/control/schedule">
+                                                <i class="fas fa-clock"></i> Schedule
+                                                 <div class="dropdown-divider"></div>
+                                                <div class="form-group ">
+                                                    <div class="form-group text-center ">
+                                                        <select required name="lamp_start" class="form-control form-control-sm" id="startHourInput" style="appearance: none;">
+                                                            <option value="">Start hour</option>
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                            <option>6</option>
+                                                            <option>7</option>
+                                                            <option>8</option>
+                                                            <option>9</option>
+                                                            <option>10</option>
+                                                            <option>11</option>
+                                                            <option>12</option>
+                                                            <option>13</option>
+                                                            <option>14</option>
+                                                            <option>15</option>
+                                                            <option>16</option>
+                                                            <option>17</option>
+                                                            <option>18</option>
+                                                            <option>19</option>
+                                                            <option>20</option>
+                                                            <option>21</option>
+                                                            <option>22</option>
+                                                            <option>23</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group text-center">
+                                                        <select required name="lamp_stop" class="form-control form-control-sm" id="stopHourInput" style="appearance: none;">
+                                                            <option value="">Stop hour</option>
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                            <option>6</option>
+                                                            <option>7</option>
+                                                            <option>8</option>
+                                                            <option>9</option>
+                                                            <option>10</option>
+                                                            <option>11</option>
+                                                            <option>12</option>
+                                                            <option>13</option>
+                                                            <option>14</option>
+                                                            <option>15</option>
+                                                            <option>16</option>
+                                                            <option>17</option>
+                                                            <option>18</option>
+                                                            <option>19</option>
+                                                            <option>20</option>
+                                                            <option>21</option>
+                                                            <option>22</option>
+                                                            <option>23</option>
+                                                        </select>
+                                                        <input type="hidden" value="{{schedule.id}}" name="id"></input>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-divider"></div>
+                                                <button type="submit " class="btn btn-success btn-block btn-sm">Update</button>
+                                            </form>
+                                        </div>
+                                    </div>
 
                                 </div>
                                 <div class="card-body">
@@ -48,7 +138,7 @@
                                             <input type="checkbox" class="custom-control-input" id="0"
                                                 onclick="switchToggle(this)" value="">
                                             <label class="custom-control-label " for="0">
-                                                 <span><i class="fas fa-lock" id="lock-badge"></i></span>
+                                                <span><i class="fas fa-lock" id="lock-badge"></i></span>
                                                 <span></span></label>
                                         </div>
                                         <div class="custom-control custom-switch">
@@ -220,17 +310,21 @@
         $(".GaugeMeter").gaugeMeter();
     });
 
+    $('.dropdown-menu select').click(function (e) {
+        e.stopPropagation(); //This will prevent the event from bubbling up and close the dropdown when you type/click on text boxes.
+    });
+
     let calendarId;
 
     function switchToggle(elem) {
 
         let lock = document.getElementById("lock-badge");
-        if(elem.checked){
+        if (elem.checked) {
             lock.className = "fas fa-unlock"
-        }else{
+        } else {
             lock.className = "fas fa-lock"
         }
-        
+
 
         blockControl(elem);
         for (let i = 3; i <= 6; i++) {

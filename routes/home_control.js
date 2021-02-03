@@ -35,12 +35,12 @@ router.get('/', (req, res, next) => {
                 let chart = new Chart(results, date.revertCurrentDate());
                 let fullHistory = results;
 
-                
-                for (let k in fullHistory){
-                    if(fullHistory[k].modified){
+
+                for (let k in fullHistory) {
+                    if (fullHistory[k].modified) {
                         fullHistory[k].modified = new Date(fullHistory[k].modified).getHours();
                     }
-                       
+
                 }
 
 
@@ -112,6 +112,62 @@ router.post('/history', (req, res, next) => {
             res.send({ "found": false, "calendar": req.body.calendarId, "message": `Invalid filters.` });
         }
     }
+});
+
+router.post('/schedule', (req, res, next) => {
+    if (!req.session.loggedin) res.redirect('/auth');
+
+    else { 
+
+        let payload = {
+            lamp_start: req.body.lamp_start,
+            lamp_stop: req.body.lamp_stop
+        }
+
+        
+        mysql.update('greenhouse_schedule',payload,{"id": req.body.id},(error,results) => {
+            if(error) {
+                return next(error);
+            } else {
+                if (results.affectedRows > 0 ) {
+                    res.redirect('/control');
+                }
+            }
+        });
+    }
+});
+
+router.post('/phase', (req, res, next) => {
+    if (!req.session.loggedin) res.redirect('/auth');
+
+    else {
+        console.log(req.body)
+
+        let mysql = new mysqlController(config.mysql);
+
+        let query = `UPDATE greenhouse_schedule set active = 1 where id = ${req.body.phase_id};`
+                    console.log(query)
+        mysql.query(query, (error, results) => {
+            if (error) {
+                return next(error);
+            } else {
+                if (results.affectedRows > 0) {
+                    let query2 = `UPDATE greenhouse_schedule set active = 0 where id <> ${req.body.phase_id};`
+                    mysql.query(query2, (error, results) => {
+                        if (error) {
+                            return next(error);
+                        } else {
+                            if (results.affectedRows > 0) {
+                                res.redirect('/control')
+                            }
+                        }
+                    });
+                }
+            }
+        });       
+    }
+
+
 });
 
 module.exports = router;

@@ -11,7 +11,7 @@ let paramsIndex, currentDate;
 class greenhouseCron {
     constructor() {
 
-        cron.schedule('00 00 0-23 * * *', () => {
+        cron.schedule('00 1 0-23 * * *', () => {
             let Date = new DateAndTime();
             currentDate = Date.getCurrentDate();
             paramsIndex = `hours_${Date.getHours()}`;
