@@ -7,7 +7,7 @@ const DateAndTime = require('../assets/entity/date');
 const Chart = require('../assets/entity/tempHistoryChart');
 const config = new options();
 const mysql = new mysqlController(config.mysql);
-const date = new DateAndTime();
+
 
 let router = express.Router();
 let arduinoSensors, weatherData, sensorsData;
@@ -24,7 +24,7 @@ router.get('/', (req, res, next) => {
 
             responseBody = JSON.parse(body);
             greenHouseStats = responseBody.variables;
-
+	    let date = new DateAndTime();
 
 
             mysql.select('greenhouse_monitor', { "date": date.getCurrentDate() }, (error, results) => {
@@ -94,7 +94,7 @@ router.post('/history', (req, res, next) => {
     else {
         if (req.body) {
             let sensorsHistory, weatherHistory;
-
+	    let date = new DateAndTime();
             mysql.select('greenhouse_monitor', { "date": req.body.date }, (error, results) => {
                 if (error) {
                     return next(error);
