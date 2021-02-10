@@ -24,6 +24,11 @@ router.get('/', (req, res, next) => {
 
             responseBody = JSON.parse(body);
             greenHouseStats = responseBody.variables;
+            greenHouseStats.fan_in = parseInt((greenHouseStats.fan_in / 255) * 100);
+            greenHouseStats.fan_out = parseInt((greenHouseStats.fan_out / 255) * 100);
+
+
+
 	    let date = new DateAndTime();
 
 
@@ -87,6 +92,25 @@ router.post('/', (req, res, next) => {
     }
 });
 
+router.post('/fan', (req, res, next) => {
+    if (!req.session.loggedin) res.redirect('/auth');
+
+    else {
+        let url;
+
+        if (req.body.id == 44 )
+            url = `${config.arduino.host}/fanIn?params=${req.body.value}`;
+        else if (req.body.id = 45)
+            url = `${config.arduino.host}/fanOut?params=${req.body.value}`;
+
+        request(url, (error, response) => {
+            if (error) {
+                return next(error);
+            }
+            res.send(response);
+        });
+    }
+});
 
 router.post('/history', (req, res, next) => {
     if (!req.session.loggedin) res.redirect('/auth');

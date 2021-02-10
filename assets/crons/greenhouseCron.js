@@ -31,9 +31,10 @@ class greenhouseCron {
                     humidity : responseBody.variables.humidity,
                     soil_moisture : responseBody.variables.soil_moisture,
                     pomp_off : responseBody.variables.pomp_off,
-                    fan_off : responseBody.variables.fan_off,
+                    fan_in : parseInt((responseBody.variables.fan_in / 255) * 100),
                     veg_lamp_off : responseBody.variables.veg_lamp_off,
-                    fruit_lamp_off : responseBody.variables.fruit_lamp_off
+                    fruit_lamp_off : responseBody.variables.fruit_lamp_off,
+                    fan_out : parseInt((responseBody.variables.fan_out / 255) * 100)
                 }
 
                 console.log(insertValues);

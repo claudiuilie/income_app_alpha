@@ -8,109 +8,120 @@
                         <div class="portfolio-item mx-auto ">
                             <div class="card text-center text-primary ">
                                 <div class="card-header p-1">
-                                     <span><i>Greenhouse status</i></br>
-                                    <div class="btn-group">
-                                        <button type="button" class="badge btn btn-primary btn-sm dropdown-toggle"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {{#if schedule.veg_phase}}
-                                            <i class="fas fa-seedling"></i>Phase: veg
-                                            {{/if}}
-                                            {{#if schedule.fruit_phase}}
-                                            <span><i class="fas fa-seedling"></i>Phase: fruit
-                                            {{/if}}
-                                        </button>
-                                        <div class="dropdown-menu text-muted">
-                                            <form class="p-2 was-validated text-center" method="POST" action="/control/phase">
-                                            <i class="fas fa-seedling"></i> Phase
-                                            <div class="dropdown-divider"></div>
-                                                <div class="form-group text-center ">
-                                                    <select  required name="phase_id"class="form-control form-control-sm" id="phaseSelector" style="appearance: none;">
-                                                        <option value="">Select phase</option>
-                                                        <option value="1">Vegetative</option>
-                                                        <option value ="2">Fruit</option>
-                                                    </select>
-                                                </div>
-                                                <div class="dropdown-divider"></div>
-                                                <button type="submit " class="btn btn-success btn-block btn-sm">Update</button>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                    <div class="btn-group">
-                                        <button type="button" class="badge btn btn-primary btn-sm dropdown-toggle"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="far fa-calendar-alt"></i>
-                                            {{schedule.lamp_start}}:00 -
-                                            {{schedule.lamp_stop}}:00
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right text-muted">
-                                            <form class="p-2 was-validated text-center" method="POST" action="/control/schedule">
-                                                <i class="fas fa-clock"></i> Schedule
-                                                 <div class="dropdown-divider"></div>
-                                                <div class="form-group ">
+                                    <span><i>Greenhouse status</i></br>
+                                        <div class="btn-group">
+                                            <button type="button" class="badge btn btn-primary btn-sm dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                {{#if schedule.veg_phase}}
+                                                <i class="fas fa-seedling"></i>Phase: veg
+                                                {{/if}}
+                                                {{#if schedule.fruit_phase}}
+                                                <span><i class="fas fa-seedling"></i>Phase: fruit
+                                                    {{/if}}
+                                            </button>
+                                            <div class="dropdown-menu text-muted">
+                                                <form class="p-2 was-validated text-center" method="POST"
+                                                    action="/control/phase">
+                                                    <i class="fas fa-seedling"></i> Phase
+                                                    <div class="dropdown-divider"></div>
                                                     <div class="form-group text-center ">
-                                                        <select required name="lamp_start" class="form-control form-control-sm" id="startHourInput" style="appearance: none;">
-                                                            <option value="">Start hour</option>
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                            <option>6</option>
-                                                            <option>7</option>
-                                                            <option>8</option>
-                                                            <option>9</option>
-                                                            <option>10</option>
-                                                            <option>11</option>
-                                                            <option>12</option>
-                                                            <option>13</option>
-                                                            <option>14</option>
-                                                            <option>15</option>
-                                                            <option>16</option>
-                                                            <option>17</option>
-                                                            <option>18</option>
-                                                            <option>19</option>
-                                                            <option>20</option>
-                                                            <option>21</option>
-                                                            <option>22</option>
-                                                            <option>23</option>
+                                                        <select required name="phase_id"
+                                                            class="form-control form-control-sm" id="phaseSelector"
+                                                            style="appearance: none;">
+                                                            <option value="">Select phase</option>
+                                                            <option value="1">Vegetative</option>
+                                                            <option value="2">Fruit</option>
                                                         </select>
                                                     </div>
-                                                    <div class="form-group text-center">
-                                                        <select required name="lamp_stop" class="form-control form-control-sm" id="stopHourInput" style="appearance: none;">
-                                                            <option value="">Stop hour</option>
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                            <option>6</option>
-                                                            <option>7</option>
-                                                            <option>8</option>
-                                                            <option>9</option>
-                                                            <option>10</option>
-                                                            <option>11</option>
-                                                            <option>12</option>
-                                                            <option>13</option>
-                                                            <option>14</option>
-                                                            <option>15</option>
-                                                            <option>16</option>
-                                                            <option>17</option>
-                                                            <option>18</option>
-                                                            <option>19</option>
-                                                            <option>20</option>
-                                                            <option>21</option>
-                                                            <option>22</option>
-                                                            <option>23</option>
-                                                        </select>
-                                                        <input type="hidden" value="{{schedule.id}}" name="id"></input>
-                                                    </div>
-                                                </div>
-                                                <div class="dropdown-divider"></div>
-                                                <button type="submit " class="btn btn-success btn-block btn-sm">Update</button>
-                                            </form>
+                                                    <div class="dropdown-divider"></div>
+                                                    <button type="submit "
+                                                        class="btn btn-success btn-block btn-sm">Update</button>
+                                                </form>
+                                            </div>
                                         </div>
-                                    </div>
+
+                                        <div class="btn-group">
+                                            <button type="button" class="badge btn btn-primary btn-sm dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="far fa-calendar-alt"></i>
+                                                {{schedule.lamp_start}}:00 -
+                                                {{schedule.lamp_stop}}:00
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right text-muted">
+                                                <form class="p-2 was-validated text-center" method="POST"
+                                                    action="/control/schedule">
+                                                    <i class="fas fa-clock"></i> Schedule
+                                                    <div class="dropdown-divider"></div>
+                                                    <div class="form-group ">
+                                                        <div class="form-group text-center ">
+                                                            <select required name="lamp_start"
+                                                                class="form-control form-control-sm" id="startHourInput"
+                                                                style="appearance: none;">
+                                                                <option value="">Start hour</option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <option>6</option>
+                                                                <option>7</option>
+                                                                <option>8</option>
+                                                                <option>9</option>
+                                                                <option>10</option>
+                                                                <option>11</option>
+                                                                <option>12</option>
+                                                                <option>13</option>
+                                                                <option>14</option>
+                                                                <option>15</option>
+                                                                <option>16</option>
+                                                                <option>17</option>
+                                                                <option>18</option>
+                                                                <option>19</option>
+                                                                <option>20</option>
+                                                                <option>21</option>
+                                                                <option>22</option>
+                                                                <option>23</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group text-center">
+                                                            <select required name="lamp_stop"
+                                                                class="form-control form-control-sm" id="stopHourInput"
+                                                                style="appearance: none;">
+                                                                <option value="">Stop hour</option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <option>6</option>
+                                                                <option>7</option>
+                                                                <option>8</option>
+                                                                <option>9</option>
+                                                                <option>10</option>
+                                                                <option>11</option>
+                                                                <option>12</option>
+                                                                <option>13</option>
+                                                                <option>14</option>
+                                                                <option>15</option>
+                                                                <option>16</option>
+                                                                <option>17</option>
+                                                                <option>18</option>
+                                                                <option>19</option>
+                                                                <option>20</option>
+                                                                <option>21</option>
+                                                                <option>22</option>
+                                                                <option>23</option>
+                                                            </select>
+                                                            <input type="hidden" value="{{schedule.id}}"
+                                                                name="id"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="dropdown-divider"></div>
+                                                    <button type="submit "
+                                                        class="btn btn-success btn-block btn-sm">Update</button>
+                                                </form>
+                                            </div>
+                                        </div>
 
                                 </div>
                                 <div class="card-body">
@@ -134,24 +145,24 @@
                                 </div>
                                 <div class="container p-2">
                                     <div class="container text-muted">
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="0"
-                                                onclick="switchToggle(this)" value="">
-                                            <label class="custom-control-label " for="0">
-                                                <span><i class="fas fa-lock" id="lock-badge"></i></span>
-                                                <span></span></label>
+                                        <div class="custom-control custom-switch p-0">
+                                            <label for="44" class="form-label float-left mb-0"><i
+                                                    class="fas fa-fan"></i> Fan in: <span
+                                                    id="fanInValue">{{sensors.fan_in}}</span>%</label>
+                                            <input type="range" id="44" value="{{sensors.fan_in}}"
+                                                class="form-range w-100 sensor" min="0" max="100" step="5" disabled>
                                         </div>
-                                        <div class="custom-control custom-switch">
+                                        <div class="custom-control custom-switch p-0">
+                                            <label for="45" class="form-label float-left mb-0"><i
+                                                    class="fas fa-fan"></i> Fan out: <span
+                                                    id="fanOutValue">{{sensors.fan_out}}</span>%</label>
+                                            <input type="range" id="45" value="{{sensors.fan_out}}"
+                                                class="form-range w-100 sensor" min="0" max="100" step="5" disabled>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
 
-                                            <input type="checkbox" disabled class="custom-control-input" id="4"
-                                                onclick="switchHandler(this)" {{#unless
-                                                sensors.fan_off}}checked{{/unless}} value="">
-                                            <label class="custom-control-label float-left" for="4">
-                                                <i class="fas fa-fan"></i>
-                                                <span>Fan</span></label>
-                                        </div>
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" disabled class="custom-control-input" id="3"
+                                            <input type="checkbox" disabled class="custom-control-input sensor" id="3"
                                                 onclick="switchHandler(this)" {{#unless
                                                 sensors.pomp_off}}checked{{/unless}} value="">
                                             <label class="custom-control-label float-left" for="3">
@@ -159,7 +170,7 @@
                                                 <span>Water pomp</span></label>
                                         </div>
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" disabled class="custom-control-input" id="5"
+                                            <input type="checkbox" disabled class="custom-control-input sensor" id="5"
                                                 onclick="switchHandler(this)" {{#unless
                                                 sensors.veg_lamp_off}}checked{{/unless}} value="">
                                             <label class="custom-control-label float-left" for="5">
@@ -168,14 +179,22 @@
                                         </div>
 
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" disabled class="custom-control-input" id="6"
+                                            <input type="checkbox" disabled class="custom-control-input sensor" id="6"
                                                 onclick="switchHandler(this)" {{#unless
                                                 sensors.fruit_lamp_off}}checked{{/unless}} value="">
                                             <label class="custom-control-label float-left" for="6">
                                                 <i class="far fa-lightbulb"></i>
                                                 <span>LED Fruit level</span></label>
                                         </div>
+                                        <div class="dropdown-divider"></div>
 
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="0"
+                                                onclick="switchToggle(this)" value="">
+                                            <label class="custom-control-label " for="0">
+                                                <span><i class="fas fa-lock" id="lock-badge"></i></span>
+                                                <span></span></label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -281,9 +300,7 @@
 
                                             <tr>
                                                 <th scope="row">{{this.modified}}</th>
-                                                <td>{{#if this.fan_off}} <i
-                                                        class="fas fa-stop-circle text-danger"></i>{{else}} <i
-                                                        class="fas fa-play-circle text-success"></i> {{/if}}</td>
+                                                <td><small class="text-sm">{{this.fan_in}} %</small></td>
                                                 <td>{{#if this.pomp_off}} <i
                                                         class="fas fa-stop-circle text-danger"></i>{{else}} <i
                                                         class="fas fa-play-circle text-success"></i> {{/if}}</td>
@@ -314,7 +331,47 @@
         e.stopPropagation(); //This will prevent the event from bubbling up and close the dropdown when you type/click on text boxes.
     });
 
-    let calendarId;
+    var calendarId;
+
+    var sliderFanIn = document.getElementById("44");
+    var sliderFanOut = document.getElementById("45");
+    var spanFanIn = document.getElementById("fanInValue");
+
+    var spanFanOut = document.getElementById("fanOutValue");
+
+    // Update the current slider value (each time you drag the slider handle)
+    sliderFanIn.oninput = function () {
+        var value = this.value;
+        var fanId = this.id;
+        spanFanIn.innerHTML = value;
+    }
+
+    // Update the current slider value (each time you drag the slider handle)
+    sliderFanOut.oninput = function () {
+        var value = this.value;
+        var fanId = this.id;
+        spanFanOut.innerHTML = value;
+    }
+
+    sliderFanIn.onmouseup = function () {
+        startFan(this)
+    }
+
+    sliderFanOut.onmouseup = function () {
+        startFan(this)
+    }
+
+    function startFan(elem) {
+        blockControl(elem);
+
+        $.ajax({
+            method: "POST",
+            url: "/control/fan" ,
+            data: { "id": elem.id, "value": parseInt((255 /100) * elem.value) }
+        }).done(function () {
+            unblockControl(elem)
+        })
+    }
 
     function switchToggle(elem) {
 
@@ -327,12 +384,17 @@
 
 
         blockControl(elem);
-        for (let i = 3; i <= 6; i++) {
-            if (!$("#" + i)[0].disabled) {
-                document.getElementById(i).setAttribute("disabled", "true");
+        var buttons = document.getElementsByClassName("sensor")
+
+        for (let k = 0; k < buttons.length; k++) {
+
+            if (buttons[k].disabled) {
+
+                buttons[k].removeAttribute("disabled");
+                buttons[k].focus();
             } else {
-                document.getElementById(i).removeAttribute("disabled");
-                document.getElementById(i).focus();
+
+                buttons[k].setAttribute("disabled", "true");
             }
         }
         unblockControl(elem);

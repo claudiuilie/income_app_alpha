@@ -10,7 +10,7 @@ let currentDate;
 
 class greenhouseSchedulerCron {
     constructor() {
-        // 
+ 
         cron.schedule('00 0,10,15,20,25,30,35,40,45,50,55 0-23 * * *', () => {
 
             console.log("cron scheduler");
@@ -22,8 +22,8 @@ class greenhouseSchedulerCron {
                     let responseBody = JSON.parse(body);
                     let sensors = responseBody.variables;
 
-                     if(sensors.fan_off){
-                         startFan()
+                     if(sensors.fan_in == 0){
+                         startInFan(100)
                      }
                     validateLampPhase();
                     console.log(sensors);
@@ -95,8 +95,8 @@ class greenhouseSchedulerCron {
             }
         }
 
-        function startFan() {
-            request(`${config.arduino.host}/fan?params=1`, (error, response, body) => {
+        function startInFan(value) {
+            request(`${config.arduino.host}/fanIn?params=${value}`, (error, response, body) => {
 
                 if (error) {
                     console.log(error)
