@@ -25,6 +25,16 @@ class greenhouseSchedulerCron {
                      if(sensors.fan_in == 0){
                          startInFan(100)
                      }
+
+                    if(sensors.temperature > 26 || sensors.humidity > 70){
+                      if(sensors.fan_in <= 230){
+                       startFanIn(sensors.fan_in + 25)
+                      }else if(sensors.fan_in > 230 && sensors.fan_in < 255){
+                       startFanIn(255)
+                      }
+                    }else if(sensors.temperature <= 26 && sensors.temperature >24 && sensors.humidity < 70){
+                      startFanIn(sensors.fan_in - 25)
+                    }else{startFanIn(100)}
                     validateLampPhase();
                     console.log(sensors);
                 }
