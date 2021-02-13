@@ -28,9 +28,9 @@ class greenhouseSchedulerCron {
 
                     if(sensors.temperature > 26 || sensors.humidity > 70){
                       if(sensors.fan_in <= 230){
-                       startFanIn(sensors.fan_in + 25)
+                       startInFan(sensors.fan_in + 25)
                       }else if(sensors.fan_in > 230 && sensors.fan_in < 255){
-                       startFanIn(255)
+                       startInFan(255)
                       }
                     }else if(sensors.temperature <= 26 && sensors.temperature >24 && sensors.humidity < 70){
                       startFanIn(sensors.fan_in - 25)
