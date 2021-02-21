@@ -11,7 +11,7 @@ let currentDate;
 class greenhouseSchedulerCron {
     constructor() {
         // '00 0,10,15,20,25,30,35,40,45,50,55 0-23 * * *'
-        cron.schedule('10,20,30,40,50 * * * * *', () => {
+        cron.schedule('* 0-59 * * * *', () => {
 
             console.log("cron scheduler");
             request(config.arduino.host, (error, response, body) => {
@@ -29,13 +29,17 @@ class greenhouseSchedulerCron {
                     if (sensors.temperature > 26 || sensors.humidity >= 70) {
                         if (sensors.fan_in <= 230) {
                             startInFan(sensors.fan_in + 25)
+                            startOutFan(sensors.fan_in + 25)
                         } else if (sensors.fan_in > 230 && sensors.fan_in < 255) {
                             startInFan(255)
+                            startOutFan(255)
                         }
                     } else if (sensors.temperature <= 26 && sensors.temperature > 24 && sensors.humidity < 70) {
                         startInFan(153)
+                        startOutFan(153)
                     } else {
-                        startInFan(128)
+                        startInFan(77)
+                        startOutFan(77)
                     }
 
                     validateLampPhase();
@@ -109,6 +113,19 @@ class greenhouseSchedulerCron {
             console.log("Fan in set to: " +value);
 
             request(`${config.arduino.host}/fanIn?params=${value}`, (error, response, body) => {
+
+                if (error) {
+                    console.log(error)
+                }
+
+                console.log(body);
+            })
+        }
+
+        function startOutFan(value) {
+            console.log("Fan out set to: " +value);
+
+            request(`${config.arduino.host}/fanOut?params=${value}`, (error, response, body) => {
 
                 if (error) {
                     console.log(error)
