@@ -11,7 +11,7 @@ let currentDate;
 class greenhouseSchedulerCron {
     constructor() {
         // '00 0,10,15,20,25,30,35,40,45,50,55 0-23 * * *'
-        cron.schedule('* 0-59 * * * *', () => {
+        cron.schedule('00 0-59 0-23 * * *', () => {
 
             console.log("cron scheduler");
             request(config.arduino.host, (error, response, body) => {
