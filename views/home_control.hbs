@@ -289,7 +289,8 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">Hour</th>
-                                                <th scope="col">Fan</th>
+                                                <th scope="col">Fan In</th>
+                                                <th scope="col">Fan Out</th>
                                                 <th scope="col">Pomp</th>
                                                 <th scope="col">VegLamp</th>
                                                 <th scope="col">FruitLamp</th>
@@ -301,6 +302,7 @@
                                             <tr>
                                                 <th scope="row">{{this.modified}}</th>
                                                 <td><small class="text-sm">{{this.fan_in}} %</small></td>
+                                                 <td><small class="text-sm">{{this.fan_out}} %</small></td>
                                                 <td>{{#if this.pomp_off}} <i
                                                         class="fas fa-stop-circle text-danger"></i>{{else}} <i
                                                         class="fas fa-play-circle text-success"></i> {{/if}}</td>
@@ -353,7 +355,7 @@
         spanFanOut.innerHTML = value;
     }
 
-    sliderFanIn.onpointerup= function () {
+    sliderFanIn.onpointerup = function () {
         startFan(this)
     }
 
@@ -366,8 +368,8 @@
 
         $.ajax({
             method: "POST",
-            url: "/control/fan" ,
-            data: { "id": elem.id, "value": parseInt((255 /100) * elem.value) }
+            url: "/control/fan",
+            data: { "id": elem.id, "value": parseInt((255 / 100) * elem.value) }
         }).done(function () {
             unblockControl(elem)
         })
@@ -391,7 +393,7 @@
             if (buttons[k].disabled) {
 
                 buttons[k].removeAttribute("disabled");
-                
+
             } else {
 
                 buttons[k].setAttribute("disabled", "true");
