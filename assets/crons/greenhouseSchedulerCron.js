@@ -26,21 +26,40 @@ class greenhouseSchedulerCron {
                         startInFan(128)
                     }
 
-                    if (sensors.temperature > 26 || sensors.humidity >= 70) {
-                        if (sensors.fan_in <= 230) {
-                            startInFan(sensors.fan_in + 25)
-                            startOutFan(sensors.fan_in + 25)
-                        } else if (sensors.fan_in > 230 && sensors.fan_in < 255) {
-                            startInFan(255)
-                            startOutFan(255)
-                        }
-                    } else if (sensors.temperature <= 26 && sensors.temperature > 24 && sensors.humidity < 70) {
-                        startInFan(153)
-                        startOutFan(153)
-                    } else {
-                        startInFan(77)
-                        startOutFan(77)
-                    }
+                    mysql.select('greenhouse_schedule', { "active": 1 }, async (error, results) => {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            let resultBody = results[0];
+
+                            if (sensors.temperature > resultBody.max_temp -1  || sensors.humidity >= resultBody.max_humidity) {
+                                if (sensors.fan_out <= 230) {
+                                    //startInFan(sensors.fan_in + 25)
+                                    console.log("Fan out +25 ")
+                                    startOutFan(sensors.fan_out + 25)
+                                } else if (sensors.fan_out > 230 && sensors.fan_out < 255) {
+                                   // startInFan(255)
+                                   console.log("Fan out max ")
+                                    startOutFan(255)
+                                }
+
+                                if(sensors.fan_out == 255 && sensors.temperature >= resultBody.max_temp -2 ){
+                                    sensors.fan_in > 230 ? startInFan(255) : startInFan(sensors.fan_in + 25);
+                                }
+                                
+                            } else if (sensors.temperature <= resultBody.max_temp && sensors.temperature > resultBody.min_temp && sensors.humidity < resultBody.max_humidity) {
+                               // startInFan(153)
+                               console.log("Fan out 153 ")
+                                startOutFan(153)
+                            } else {
+                               // startInFan(77)
+                               console.log("Fan out 77 ")
+                                startOutFan(77)
+                            }
+
+                        } 
+                    });
+
 
                     validateLampPhase();
                 }

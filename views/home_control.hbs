@@ -8,15 +8,15 @@
                         <div class="portfolio-item mx-auto ">
                             <div class="card text-center text-primary ">
                                 <div class="card-header p-1">
-                                    <span><i>Greenhouse status</i></br>
+                                    <span><i>Greenhouse status</i></span></br>
                                         <div class="btn-group">
                                             <button type="button" class="badge btn btn-primary btn-sm dropdown-toggle"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 {{#if schedule.veg_phase}}
-                                                <i class="fas fa-seedling"></i>Phase: veg
+                                                <i class="fas fa-seedling"></i> Vegetative
                                                 {{/if}}
                                                 {{#if schedule.fruit_phase}}
-                                                <span><i class="fas fa-seedling"></i>Phase: fruit
+                                                <span><i class="fas fa-seedling"></i> Flower
                                                     {{/if}}
                                             </button>
                                             <div class="dropdown-menu text-muted">
@@ -30,7 +30,7 @@
                                                             style="appearance: none;">
                                                             <option value="">Select phase</option>
                                                             <option value="1">Vegetative</option>
-                                                            <option value="2">Fruit</option>
+                                                            <option value="2">Flower</option>
                                                         </select>
                                                     </div>
                                                     <div class="dropdown-divider"></div>
@@ -124,8 +124,8 @@
                                         </div>
 
                                 </div>
-                                <div class="card-body">
-                                    <div class="m-0">
+                                <div class="card-body p-0">
+                                    <div class="m-0">                                     
                                         <div class="container">
                                             <div class="GaugeMeter float-left" id="GaugeMeter_1"
                                                 data-used="{{sensors.temperature}}" data-min="0" data-total="40"
