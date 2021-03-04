@@ -1,36 +1,8 @@
 <header class="masthead bg-white text-white text-center container" style="padding-top: 7em;padding-bottom: 2em;">
 
-        <div class="card text-center text-primary mb-2 shadow p-2 mb-3 bg-white rounded">
-                <div class="card-body border-0 p-2 ">
-                        <h3>Proteine</h3>
-
-                        {{#each item.proteine}}
-                                <a href="item?id={{this.id}}" title=""><img style="width:70px" src="{{this.icon}}" alt="{{this.name}}"class="rounded-sm img-thumbnail mb-1 img-responsive shadow bg-white"></a>
-                        {{/each}}
-                </div>
-        </div>
-        <div class="card text-center text-primary mb-2 shadow p-2 mb-3 bg-white rounded">
-                <div class="card-body border-0 p-2">
-                        <H3>Legume</H3>
-                        {{#each item.legume}}
-                                <a href="item?id={{this.id}}" title=""><img style="width:70px" src="{{this.icon}}" alt="{{this.name}}"class="rounded-sm img-thumbnail mb-1 img-responsive shadow bg-white"></a>
-                        {{/each}}
-                </div>
-        </div>
-        <div class="card text-center text-primary mb-2 shadow p-2 mb-3 bg-white rounded">
-                <div class="card-body border-0 p-2">
-                       <H3>Carbohidrati</H3>
-                        {{#each item.carbohidrati}}
-                                <a href="item?id={{this.id}}" title=""><img style="width:70px" src="{{this.icon}}" alt="{{this.name}}"class="rounded-sm img-thumbnail mb-1 img-responsive shadow bg-white"></a>
-                        {{/each}}
-                </div>
-        </div>
-        <div class="card text-center text-primary mb-2 shadow p-2 mb-3 bg-white rounded">
-                <div class="card-body border-0 p-2">
-                        <H3>Grasimi Sanatoase</H3>
-                        {{#each item.grasimi}}
-                                <a href="item?id={{this.id}}" title=""><img style="width:70px" src="{{this.icon}}" alt="{{this.name}}"class="rounded-sm img-thumbnail mb-1 img-responsive"></a>
-                        {{/each}}
-                </div>
-        </div>
+<form id ="formData" class="was-validated " method="POST" action="/plate/list" >
+  <label for="favcolor">Select your favorite color:</label>
+  <input type="color" id="favcolor" name="favcolor" value="#ff0000"><br><br>
+  <input type="submit">
+</form>
 </header>

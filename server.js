@@ -8,9 +8,10 @@ const cron = require('./assets/crons/greenhouseCron');
 const cron2 = require('./assets/crons/greenhouseSchedulerCron');
 const mysql = require('mysql');
 const mysqltorest  = require('mysql-to-rest');
- const greenhouseCron = new cron();
- const greenhouseSchedulerCron = new cron2();
+const greenhouseCron = new cron();
+const greenhouseSchedulerCron = new cron2();
 const passwordHash = require('password-hash');
+const AColorPicker = require('a-color-picker');
 
 let api;
 let app = express();

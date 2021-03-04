@@ -2,6 +2,8 @@ const express = require('express');
 const request = require('request');
 const options = require('../assets/config/config');
 const ewelink = require('ewelink-api');
+const AColorPicker = require('a-color-picker');
+
 
 
 let config = new options();
@@ -51,7 +53,9 @@ router.get('/',(req,res,next) => {
         //         next(err);
         //     }
         // })();
-        res.render('home');
+        res.render('home', {
+            colorPicker: AColorPicker
+        });
     }
 });
 

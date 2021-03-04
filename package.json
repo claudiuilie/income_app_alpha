@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "a-color-picker": "^1.2.1",
     "chart.js": "^2.8.0",
     "cron": "^1.7.1",
     "cryptiles": ">=4.1.2",
@@ -27,6 +28,7 @@
     "nodemailer": "^6.3.0",
     "password-hash": "^1.2.2",
     "request": "^2.81.0",
+    "shelljs": "^0.8.4",
     "webtorrent": "^0.107.17"
   },
   "devDependencies": {

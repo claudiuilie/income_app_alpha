@@ -2,6 +2,7 @@ const mysqlController = require('../assets/js/mysqlController');
 const options = require('../assets/config/config');
 const express = require('express');
 const config = new options();
+const shell = require('shelljs');
 
 let router = express.Router();
 let mysql = new mysqlController(config.mysql);
@@ -46,6 +47,23 @@ router.get('/', (req, res, next) => {
             }
         });
     }
+});
+
+
+router.post('/', (req, res, next) => {
+
+    if (!req.session.loggedin) res.redirect('/auth');
+
+    else {
+
+            console.log(req.body);
+            let color = req.body.favcolor.replace("#",'');
+            let payload = `gatttool -b FF:FF:AB:00:7D:B6  --char-write-req -a 0x0007 -n '56${color}00f0aa`;
+           shell.exec(payload);
+            console.log(payload);
+                res.render('plate_list');
+    }
+
 });
 
 module.exports = router;
