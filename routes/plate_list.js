@@ -58,7 +58,7 @@ router.post('/', (req, res, next) => {
 
             console.log(req.body);
             let color = req.body.favcolor.replace("#",'');
-            let payload = `gatttool -b FF:FF:AB:00:7D:B6  --char-write-req -a 0x0007 -n '56${color}00f0aa`;
+            let payload = `gatttool -b FF:FF:AB:00:7D:B6  --char-write-req -a 0x0007 -n '56${color}00f0aa'`;
            shell.exec(payload);
             console.log(payload);
                 res.render('plate_list');
